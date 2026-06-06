@@ -150,6 +150,154 @@ function selectNode(node) {
     selectedNode = null;
 }
 
+
+function findShortestPath() {
+
+    const nodes = [
+        ...workspace.querySelectorAll(".circle")
+    ];
+
+    const distances = new Map();
+    const previous = new Map();
+    const unvisited = new Set(nodes);
+
+    nodes.forEach(node => {
+        distances.set(node, Infinity);
+        previous.set(node, null);
+    });
+
+    distances.set(startNode, 0);
+
+    while (unvisited.size > 0) {
+
+        let current = null;
+
+        unvisited.forEach(node => {
+            if (
+                current === null ||
+                distances.get(node) < distances.get(current)
+            ) {
+                current = node;
+            }
+        });
+
+        if (current === endNode) break;
+
+        unvisited.delete(current);
+
+        edges.forEach(edge => {
+
+            let neighbor = null;
+
+            if (edge.from === current) {
+                neighbor = edge.to;
+            } else if (edge.to === current) {
+                neighbor = edge.from;
+            }
+
+            if (
+                neighbor &&
+                unvisited.has(neighbor)
+            ) {
+
+                const alt =
+                    distances.get(current) +
+                    edge.distance;
+
+                if (
+                    alt < distances.get(neighbor)
+                ) {
+                    distances.set(neighbor, alt);
+                    previous.set(neighbor, current);
+                }
+            }
+
+        });
+
+    }
+
+    const path = [];
+    let current = endNode;
+
+    while (current) {
+        path.unshift(current);
+        current = previous.get(current);
+    }
+
+    if (
+        path.length === 1 &&
+        path[0] !== startNode
+    ) {
+        alert("Path tidak ditemukan");
+        resetPathSelection();
+        return;
+    }
+
+    highlightPath(path);
+
+    // alert(
+    //     `Jarak Terpendek: ${distances.get(endNode)}`
+    // );
+
+    resetPathSelection();
+}
+
+
+
+function highlightPath(path) {
+
+    svg.querySelectorAll("line").forEach(line => {
+        line.setAttribute("stroke", "black");
+        line.setAttribute("stroke-width", "3");
+    });
+
+    for (let i = 0; i < path.length - 1; i++) {
+
+        const nodeA = path[i];
+        const nodeB = path[i + 1];
+
+        const edge = edges.find(
+            edge =>
+                (edge.from === nodeA &&
+                    edge.to === nodeB) ||
+                (edge.from === nodeB &&
+                    edge.to === nodeA)
+        );
+
+        if (edge) {
+            edge.line.setAttribute(
+                "stroke",
+                "lime"
+            );
+
+            edge.line.setAttribute(
+                "stroke-width",
+                "6"
+            );
+        }
+
+    }
+
+}
+
+
+function resetPathSelection() {
+
+    if (startNode) {
+        startNode.style.border =
+            "1px solid black";
+    }
+
+    if (endNode) {
+        endNode.style.border =
+            "1px solid black";
+    }
+
+    startNode = null;
+    endNode = null;
+}
+
+
 function setDistance() {
 
     const distance = distanceInput.value;
