@@ -1,0 +1,139 @@
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 10px;
+    left: 0;
+
+    z-index: 1000;
+}
+
+#workspace {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: white;
+
+    background-image:
+        linear-gradient(#000 1px, transparent 1px),
+        linear-gradient(90deg, #000 1px, transparent 1px);
+
+    background-size: 25px 25px;
+}
+
+#connections {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#navbar {
+    border-radius: 10px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 24px;
+    border: 1px solid black;
+
+    background: white;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.icon-container p {
+    cursor: pointer;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+#popup-node {
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    border: 3px solid black;
+    padding: 10px;
+}
+
+
+#input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-container button {
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+#nodes-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #eae9eb;
+    color: black;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#circle p {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+}
+
+
+#distance-popup {
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    border: 3px solid black;
+    padding: 10px;
+}

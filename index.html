@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connenction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div id="navbar">
+            <div class="icon-container">
+
+                <img class="icon" src="./assets/download.svg" onclick="saveImage()">
+                <p onclick="saveImage()">Save Image</p>
+
+                <img class="icon" src="./assets/find_path.svg" onclick="findPathMode()">
+                <p onclick="findPathMode()">Find Path</p>
+
+                <img class="icon" src="./assets/connect.svg" onclick="connectMode()">
+                <p onclick="connectMode()">Connect</p>
+
+                <img class="icon" src="./assets/delete.svg" onclick="deleteMode()">
+                <p onclick="deleteMode()">Delete</p>
+
+                <img class="icon" src="./assets/empty.svg" onclick="clearNodes()">
+                <p onclick="clearNodes()">Clear</p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="workspace">
+
+
+        <svg id="connections"></svg>
+
+        <div id="popup-node" class="hidden">
+            <h3>Create Node</h3>
+            <div id="input-container">
+                <input type="text" id="node-name" placeholder="Node Name" />
+                <button onclick="createNode()">Create</button>
+            </div>
+        </div>
+
+
+        <!-- <div id="circle" class="hidden">
+            <p id="circle-name">S</p>
+        </div> -->
+
+
+        <div id="distance-popup" class="hidden">
+            <h3>Set Distance</h3>
+            <div id="input-container">
+                <input type="number" id="distance-value" placeholder="Distance" />
+                <button onclick="setDistance()">Set</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
